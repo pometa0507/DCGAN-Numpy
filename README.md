@@ -1,4 +1,4 @@
-# DCDGAN-Numpy
+# DCGAN-Numpy
 DCGAN in Numpy
 
 # License
@@ -91,11 +91,16 @@ DVGANの学習は、GeneratorとDiscriminatorでそれぞれ学習すること�
 
 ## Generator Training
 
+Generatorの学習は、Discriminatorを騙すように学習します。
+
+
 ![Generator-Training](https://github.com/pometa0507/DCDGAN-Numpy/blob/master/images/appendix/Generator-Training.png)
 
 <br>
 
 
 ## Discriminator Training
+
+Discriminatorの学習は、Generatorが生成した画像を偽物、実画像を本物と識別できるように学習します。
 
 ![Discriminator-Training](https://github.com/pometa0507/DCDGAN-Numpy/blob/master/images/appendix/Discriminator-Training.png)
