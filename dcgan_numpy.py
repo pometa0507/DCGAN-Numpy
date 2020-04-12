@@ -23,29 +23,29 @@ from common import *
 """
 
 class Generator:
-    def __init__(self,latent_dim):
+    def __init__(self, latent_dim=100):
 
         self.latent_dim = latent_dim   #潜在空間
 
         # レイヤの生成
         self.layers = OrderedDict()
-        self.layers['ConvTrans1'] = ConvTrans2D(in_channels=latent_dim, out_channels=256, kernel_size=4, stride=1, pad=0, bias=False) #(in_channels, out_channels, kernel_size, stride=1, pad=0, out_pad=0, bias):
+        self.layers['ConvTrans1'] = ConvTrans2D(in_channels=latent_dim, out_channels=256, kernel_size=4, stride=1, pad=0, bias=False)
         self.layers['BN1'] = BatchNormalization(np.ones(256),np.zeros(256))
         self.layers['Relu1'] = Relu()
 
-        self.layers['ConvTrans2'] = ConvTrans2D(in_channels=256, out_channels=128, kernel_size=4, stride=2, pad=1, bias=False) #(in_channels, out_channels, kernel_size, stride=1, pad=0, out_pad=0, bias):
+        self.layers['ConvTrans2'] = ConvTrans2D(in_channels=256, out_channels=128, kernel_size=4, stride=2, pad=1, bias=False)
         self.layers['BN2'] = BatchNormalization(np.ones(128),np.zeros(128))
         self.layers['Relu2'] = Relu()
         
-        self.layers['ConvTrans3'] = ConvTrans2D(in_channels=128, out_channels=64, kernel_size=4, stride=2, pad=1, bias=False) #(in_channels, out_channels, kernel_size, stride=1, pad=0, out_pad=0, bias)::
+        self.layers['ConvTrans3'] = ConvTrans2D(in_channels=128, out_channels=64, kernel_size=4, stride=2, pad=1, bias=False)
         self.layers['BN3'] = BatchNormalization(np.ones(64),np.zeros(64))
         self.layers['Relu3'] = Relu()
         
-        self.layers['ConvTrans4'] = ConvTrans2D(in_channels=64, out_channels=32, kernel_size=4, stride=2, pad=1, bias=False) #(in_channels, out_channels, kernel_size, stride=1, pad=0, out_pad=0, bias)::
+        self.layers['ConvTrans4'] = ConvTrans2D(in_channels=64, out_channels=32, kernel_size=4, stride=2, pad=1, bias=False)
         self.layers['BN4'] = BatchNormalization(np.ones(32),np.zeros(32))
         self.layers['Relu4'] = Relu()
         
-        self.layers['ConvTrans5'] = ConvTrans2D(in_channels=32, out_channels=3, kernel_size=4, stride=2, pad=1, bias=False) #(in_channels, out_channels, kernel_size, stride=1, pad=0, out_pad=0, bias)::
+        self.layers['ConvTrans5'] = ConvTrans2D(in_channels=32, out_channels=3, kernel_size=4, stride=2, pad=1, bias=False)
         self.layers['Tanh'] = Tanh()
         
         self.dout = None
@@ -234,7 +234,7 @@ class DCGAN:
     def train(self, x_train, savedir, epochs, batch_size=64):
         """学習"""
 
-        print("epocks={} , batch_size={}".format(epochs,batch_size))
+        print("epochs={} , batch_size={}".format(epochs,batch_size))
 
         loss_G_array = np.array([])
         loss_D_real_array = np.array([])
